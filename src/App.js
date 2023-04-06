@@ -1,12 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Router from "./Router";
+import { useState } from "react";
+import Page from "./layout/Page";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <div>Pocetak</div>
-      </header>
+      <Page
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      >
+        <Router setIsAuthenticated={setIsAuthenticated} />
+      </Page>
     </div>
   );
 }
