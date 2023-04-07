@@ -1,9 +1,11 @@
 import HttpService from "./HttpsService";
 
 class GradebooksService extends HttpService {
-  getAll = async () => {
-    const response = await this.client.get(`gradebooks`);
+  getAll = async (nextLoadCount) => {
+    // const response = await this.client.get(`gradebooks`);
+    const response = await this.client.get(`gradebooks?per_page=${nextLoadCount}`);
 
+    console.log("nextLoadCount:", nextLoadCount);
     console.log("Response test:", response);
 
     return response.data;

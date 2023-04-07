@@ -9,24 +9,42 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
   }
 
   return (
-    <div>
-      <label> || </label>
-      {!isAuthenticated && (
-        <Link to="/register">
-          <button className="navigationButtons">Register</button>
-        </Link>
-      )}
-      {isAuthenticated && (
-        <button className="navigationButtons" onClick={handleLogout}>
-          Logout
-        </button>
-      )}
-      <label> || </label>
-      {!isAuthenticated && (
-        <Link to="/login">
-          <button className="navigationButtons">Login</button>
-        </Link>
-      )}
-    </div>
+    <nav className="navigation">
+      <div>
+        {!isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/register">
+              <button className="navigationButtons">Register</button>
+            </Link>
+          </>
+        )}
+        {isAuthenticated && (
+          <>
+            <label> || </label>
+            <button className="navigationButtons" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        )}
+        {!isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/login">
+              <button className="navigationButtons">Login</button>
+            </Link>
+          </>
+        )}
+
+        {isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/">
+              <button className="navigationButtons">Home</button>
+            </Link>
+          </>
+        )}
+      </div>
+    </nav>
   );
 }

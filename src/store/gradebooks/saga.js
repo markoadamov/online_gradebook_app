@@ -6,6 +6,7 @@ import gradebooksService from '../../services/GradebooksService';
 function* getAllGradebooksHandler(action) {
 
     try {
+        console.log("Akcija",action);
         const data = yield call(gradebooksService.getAll, action.payload);
         yield put(setGradebooks(data));
     }

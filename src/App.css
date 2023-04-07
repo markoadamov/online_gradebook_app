@@ -7,12 +7,37 @@ body{
   color: white;
 }
 
+.Center {
+  text-align: center;
+}
+
 .AppLogin {
   text-align: center;
 }
 
+.LoadButton{
+  margin-bottom: 5rem;
+}
+
 .AppRegister {
   text-align: center;
+}
+
+table {
+  border: 1px solid black;
+  width: 90%;
+  margin-bottom: 2rem;
+}
+
+th, td {
+  border: 1px solid black;
+}
+
+.DivGradebookList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .navigationButtons{
@@ -50,6 +75,10 @@ body{
 
 .App-link {
   color: #61dafb;
+}
+
+.redLabel {
+  color: red;
 }
 
 @keyframes App-logo-spin {
