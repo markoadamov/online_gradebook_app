@@ -67,7 +67,7 @@ export default function AppRegister({ onRegister }) {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
-          required
+          //required
           value={credentials.first_name}
           placeholder="First Name"
           onChange={({ target }) =>
@@ -78,7 +78,7 @@ export default function AppRegister({ onRegister }) {
         {errors.first_name ? handleErrorMessages(errors.first_name):<br/>}
 
         <input
-          required
+          //required
           value={credentials.last_name}
           placeholder="Last Name"
           onChange={({ target }) =>
@@ -89,7 +89,7 @@ export default function AppRegister({ onRegister }) {
         {errors.last_name ? handleErrorMessages(errors.last_name):<br/>}
 
         <input
-          required
+          //required
           value={credentials.email}
           type="email"
           placeholder="Email"
@@ -101,7 +101,7 @@ export default function AppRegister({ onRegister }) {
         {errors.email ? handleErrorMessages(errors.email):<br/>}
 
         <input
-          required
+          //required
           value={credentials.password}
           type="password"
           placeholder="Password"
@@ -111,7 +111,7 @@ export default function AppRegister({ onRegister }) {
         />
         <br />
         <input
-          required
+          //required
           value={credentials.password_confirmation}
           type="password"
           placeholder="Confirm password"
@@ -126,7 +126,7 @@ export default function AppRegister({ onRegister }) {
         {errors.password ? handleErrorMessages(errors.password):<br/>}
         
         <input
-          required
+          //required
           value={credentials.image_url}
           placeholder="Image URL"
           onChange={({ target }) =>

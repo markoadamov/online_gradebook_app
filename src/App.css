@@ -33,6 +33,10 @@ th, td {
   border: 1px solid black;
 }
 
+.TotalNumGradebooks {
+  margin-bottom: 2rem;
+}
+
 .DivGradebookList {
   display: flex;
   align-items: center;

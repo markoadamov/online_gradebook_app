@@ -2,9 +2,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import React from "react";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
-import AppLogin from "./pages/Login";
-import AppRegister from "./pages/Register";
-import AppGradebooks from "./pages/Home";
+import AppLogin from "./pages/AppLogin";
+import AppRegister from "./pages/AppRegister";
+import AppGradebooks from "./pages/AppGradebooks";
 
 export default function Router({ setIsAuthenticated }) {
   return (
