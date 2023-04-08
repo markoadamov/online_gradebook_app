@@ -2,8 +2,12 @@ const gradebooksSelector = (state) => {
     return state.gradebooks.data;
 };
 
+const singleGradebookSelector = (state) => {
+    return state.gradebooks.single_gradebook;
+};
+
 const currentTotalGradebookCountSelector = (state) => {
     return state.gradebooks.current_and_total_gradebook_count;
 };
 
-export { gradebooksSelector, currentTotalGradebookCountSelector }; 
+export { gradebooksSelector, currentTotalGradebookCountSelector, singleGradebookSelector }; 

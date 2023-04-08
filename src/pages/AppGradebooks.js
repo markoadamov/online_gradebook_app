@@ -6,12 +6,12 @@ import {
   currentTotalGradebookCountSelector,
 } from "../store/gradebooks/selectors";
 import GradebooksList from "../components/gradebooks/GradebooksList";
-import FilterForm from "../components/gradebooks/FilterForm";
+import FilterForm from "../components/FilterForm";
 
 export default function AppGradebooks() {
   const dispatch = useDispatch();
   const [gbFetchParams, setGbFetchParams] = useState({
-    nextLoadCount: 10,
+    loadCount: 10,
     filterParameter: "",
   });
   const gradebooks = useSelector(gradebooksSelector);
@@ -24,14 +24,13 @@ export default function AppGradebooks() {
   }, []);
 
   const handleGetGradebooks = async (fetchParams = gbFetchParams) => {
-    //console.log(gbFetchParams.nextLoadCount);
     dispatch(performGetAllGradebooks(fetchParams));
   };
 
   const handleLoadMore = async () => {
     const fetchParams = {
       ...gbFetchParams,
-      nextLoadCount: gbFetchParams.nextLoadCount + 10,
+      loadCount: gbFetchParams.loadCount + 10,
     };
     await handleGetGradebooks(fetchParams);
     setGbFetchParams(fetchParams);
@@ -40,10 +39,14 @@ export default function AppGradebooks() {
 
   return (
     <div className="Center">
+      <h1>Gradebooks</h1>
+      <br/>
+      <label>Filter Term: </label>
       <FilterForm
-        gbFetchParams={gbFetchParams}
-        setGbFetchParams={setGbFetchParams}
-        handleGetGradebooks={handleGetGradebooks}
+        fetchParams={gbFetchParams}
+        setFetchParams={setGbFetchParams}
+        handleGetData={handleGetGradebooks}
+        defaultLoadCount={10}
       />
 
       {!(gradebooks.length === 0) ? (

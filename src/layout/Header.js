@@ -44,6 +44,14 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
             </Link>
           </>
         )}
+        {isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/teachers">
+              <button className="navigationButtons">Teachers</button>
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

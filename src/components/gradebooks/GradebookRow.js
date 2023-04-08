@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from "react-router-dom";
 export default function GradebookRow({gradebook}) {
 
   const formatDate = () => {
@@ -19,7 +19,7 @@ export default function GradebookRow({gradebook}) {
 
   return (
     <tr>
-      <td>{gradebook.name}</td>
+      <td><Link to={`gradebooks/${gradebook.id}`}>{gradebook.name}</Link></td>
       <td>{gradebook.user_id?gradebook.user_name:<label className='redLabel'>Not Assigned</label>}</td>
       <td>{formatDate()}</td>
     </tr>
