@@ -20,7 +20,7 @@ export default function GradebookRow({gradebook}) {
   return (
     <tr>
       <td><Link to={`gradebooks/${gradebook.id}`}>{gradebook.name}</Link></td>
-      <td>{gradebook.user_id?gradebook.user_name:<label className='redLabel'>Not Assigned</label>}</td>
+      <td>{gradebook.user_id?<Link to={`teachers/${gradebook.user_id}`}>{gradebook.user_name}</Link>:<label className='redLabel'>Not Assigned</label>}</td>
       <td>{formatDate()}</td>
     </tr>
   )

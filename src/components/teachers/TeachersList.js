@@ -3,8 +3,8 @@ import TeacherRow from './TeacherRow'
 
 export default function TeachersList({teachers}) {
   return (
-    <div className="DivGradebookList">
-      <table className="GradebookListTable">
+    <div className="DivList">
+      <table className="TeachersTable">
         <thead>
           <tr>
             <th>Image</th>

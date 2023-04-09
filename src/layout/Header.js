@@ -40,7 +40,23 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
           <>
             <label> || </label>
             <Link to="/">
-              <button className="navigationButtons">Home</button>
+              <button className="navigationButtons">Gradebooks</button>
+            </Link>
+          </>
+        )}
+        {isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/my-gradebook">
+              <button className="navigationButtons">My Gradebook</button>
+            </Link>
+          </>
+        )}
+        {isAuthenticated && (
+          <>
+            <label> || </label>
+            <Link to="/gradebooks/create">
+              <button className="navigationButtons">Add Gradebook</button>
             </Link>
           </>
         )}
@@ -48,11 +64,12 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
           <>
             <label> || </label>
             <Link to="/teachers">
-              <button className="navigationButtons">Teachers</button>
+              <button className="navigationButtons">All Professors</button>
             </Link>
           </>
         )}
       </div>
+      <div>Online Gradebook App ||</div>
     </nav>
   );
 }

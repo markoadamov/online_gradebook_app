@@ -33,11 +33,42 @@ th, td {
   border: 1px solid black;
 }
 
+.GradebooksTable th, 
+.GradebooksTable td {
+  border: 1px solid black;
+  width: 33.33%;
+}
+
+.AddNewStudent{
+  display: flex;
+}
+
+.AddGradebookForm{
+  margin-top: 10rem;
+}
+
+.Header{
+  border: none;
+}
+
+table.Header th {
+  /* Set the width of the th elements to 33.33% */
+  width: 33.33%;
+  border: none;
+}
+
+table.Header {
+  border-bottom: 1px solid #ffffff;
+}
+.TeachersTable {
+  width: 33.33%;
+}
+
 .TotalNumGradebooks {
   margin-bottom: 2rem;
 }
 
-.DivGradebookList {
+.DivList {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,6 +81,8 @@ th, td {
 }
 
 .navigation {
+  display: flex;
+  justify-content: space-between;
   background-color: #2b2b2b;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -58,6 +91,10 @@ th, td {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+a {
+  color: #cdf3ff; /* Replace with your desired color */
 }
 
 @media (prefers-reduced-motion: no-preference) {

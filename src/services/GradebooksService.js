@@ -2,11 +2,10 @@ import HttpService from "./HttpsService";
 
 class GradebooksService extends HttpService {
   getAll = async (fetchParams) => {
-    // const response = await this.client.get(`gradebooks`);
+    //const response = await this.client.get(`gradebooks`);
     const response = await this.client.get(`gradebooks?per_page=${fetchParams.loadCount}&filter=${fetchParams.filterParameter}`);
 
-    console.log("nextLoadCount:", fetchParams.nextLoadCount);
-    console.log("Response test:", response);
+    console.log("Response test GradebooksService getAll:", response);
 
     return response.data;
   };
@@ -16,6 +15,11 @@ class GradebooksService extends HttpService {
     const response = await this.client.get(`gradebooks/${id}`);
     console.log("response in gradebookService:",response.data);
     return response.data;
+  }
+
+  add = async (newGradebook) => {
+    console.log("GradbooksService add test:",newGradebook);
+    return await this.client.post("gradebooks", newGradebook);
   }
 }
 

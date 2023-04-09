@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const middlewareActions = {
   performGetAllGradebooks: () => {},
   performGetSingleGradebook: () => {},
+  performAddNewGradebook: () => {},
 };
 
 const gradebooksSlice = createSlice({
@@ -11,6 +12,7 @@ const gradebooksSlice = createSlice({
     data: [],
     current_and_total_gradebook_count: [],
     single_gradebook: [],
+    errors: []
   },
   reducers: {
     setGradebooks: (state, action) => {
@@ -25,12 +27,16 @@ const gradebooksSlice = createSlice({
       state.single_gradebook = action.payload;
       console.log("setSingleGradebook State:", state.single_gradebook);
     },
+    setErrors: (state, action) => {
+      state.errors = action.payload;
+    },
+    
 
     ...middlewareActions,
   },
 });
 
-export const { setGradebooks, performGetAllGradebooks, setSingleGradebook, performGetSingleGradebook } =
+export const { setErrors, setGradebooks, performGetAllGradebooks, setSingleGradebook, performGetSingleGradebook, performAddNewGradebook } =
   gradebooksSlice.actions;
 
 export default gradebooksSlice.reducer;

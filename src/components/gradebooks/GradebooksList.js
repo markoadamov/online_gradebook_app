@@ -3,8 +3,8 @@ import GradebookRow from './GradebookRow'
 
 export default function GradebooksList({gradebooks}) {
   return (
-    <div className="DivGradebookList">
-      <table className="GradebookListTable">
+    <div className="DivList">
+      <table className="GradebooksTable">
         <thead>
           <tr>
             <th>Gradebook Name</th>
