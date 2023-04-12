@@ -118,10 +118,10 @@ export default function SingleGradebook({ isMyGradebookPage }) {
             <thead>
               <tr>
                 <th>
-                  {activeUser.id === gradebook.user_id ? (
-                    renderAddEditDeleteButtons()
-                  ) : (
+                  {(activeUser.id != gradebook.user_id) || activeUser.id == null ? (
                     <label className="redLabel">Not Your Class</label>
+                    ) : (
+                    renderAddEditDeleteButtons()
                   )}
                 </th>
                 <th>
