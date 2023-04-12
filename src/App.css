@@ -7,8 +7,17 @@ body{
   color: white;
 }
 
+.AddCommentForm {
+  margin-bottom: 5rem;
+}
+
 .Center {
   text-align: center;
+}
+
+.ActiveUserDiv {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .AppLogin {
@@ -17,6 +26,8 @@ body{
 
 .LoadButton{
   margin-bottom: 5rem;
+  width: 200px;
+  height: 25px;
 }
 
 .AppRegister {
@@ -26,7 +37,7 @@ body{
 table {
   border: 1px solid black;
   width: 90%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 th, td {
@@ -41,10 +52,24 @@ th, td {
 
 .AddNewStudent{
   display: flex;
+  background-color: rgb(86, 174, 86);
+  color: white;
 }
 
 .AddGradebookForm{
   margin-top: 10rem;
+}
+
+.EditGradebookForm{
+  margin-top: 3rem;
+}
+
+.EditGradebook{
+  text-align: center;
+  display: flex;
+  margin-top: 1rem;
+  background-color: rgb(85, 96, 255);
+  color: white;
 }
 
 .Header{
@@ -57,15 +82,81 @@ table.Header th {
   border: none;
 }
 
+.DeleteGradebook{
+  display: flex;
+  background-color: rgb(172, 19, 19);
+  color: white;
+  margin-top: 1rem;
+}
+
 table.Header {
   border-bottom: 1px solid #ffffff;
 }
+
 .TeachersTable {
   width: 33.33%;
 }
 
+.CommentsTable {
+  width: 90%;
+}
+
+.CommentsTable td:first-child {
+  width: 10%;
+  background-color: #343434;
+}
+
+.CommentsTable td {
+  height: 70px;
+  background-color: #343434;
+  border: 10px solid;
+  /* border-style: none; */
+  border-color: #1d1d1d;
+}
+
+.DeleteComment{
+  background-color: rgb(88, 16, 16);
+  color: white;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.DeleteStudent{
+  background-color: rgb(88, 16, 16);
+  color: white;
+  width: 100%;
+  height: 50px;
+}
+
+.CommentsTable td:last-child {
+  background-color: #343434;
+}
+
+.CommentsTable th {
+  background-color: #666666;
+}
+
 .TotalNumGradebooks {
   margin-bottom: 2rem;
+}
+
+.AddCommentTextArea{
+  width: 90%;
+  height: 100px;
+}
+
+.ButtonsAddEditGradebook{
+  width: 230px;
+}
+
+.SelectTacherAddEditGradebook{
+  margin-top: 0.5rem;
+  width: 230px;
+}
+
+.SubmitCommentButton{
+  margin-top: 1rem;
+  height: 30px;
 }
 
 .DivList {

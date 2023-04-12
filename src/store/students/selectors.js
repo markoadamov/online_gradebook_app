@@ -2,4 +2,8 @@ const studentsSelector = (state) => {
     return state.students.data;
 };
 
-export { studentsSelector }; 
+const studentsErrorsSelector = (state) => {
+    return state.students.errors;
+};
+
+export { studentsSelector, studentsErrorsSelector }; 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-export default function StudentRow({student}) {
+export default function StudentRow({student, editMode}) {
 
   return (
     <tr>
@@ -14,6 +14,7 @@ export default function StudentRow({student}) {
       </td>
       <td>{student.first_name}</td>
       <td>{student.last_name}</td>
+      {editMode.isEnabled&&<td><button className='DeleteStudent' onClick={()=>{editMode.handleDeleteStudent(student.id)}}>Delete</button></td>}
     </tr>
   )
 }

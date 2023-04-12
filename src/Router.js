@@ -9,11 +9,24 @@ import AppTeachers from "./pages/AppTeachers";
 import SingleGradebook from "./pages/SingleGradebook";
 import SingleTeacher from "./pages/SingleTeacher";
 import AddGradebook from "./pages/AddGradebook";
+import EditGradebook from "./pages/EditGradebook";
+import { useSelector } from "react-redux";
+import { activeUserSelector } from "./store/authentication/selectors";
+import AddStudent from "./pages/AddStudent";
 
-export default function Router({ setIsAuthenticated }) {
+export default function Router({setIsAuthenticated}) {
+
+  const activeUser = useSelector(activeUserSelector);
+
   return (
     <div>
       <Switch>
+        <PublicRoute exact path="/login">
+          <AppLogin onLogin={() => {setIsAuthenticated(true) }}/>
+        </PublicRoute>
+        <PublicRoute exact path="/register">
+          <AppRegister onRegister={() => {setIsAuthenticated(true) }}/>
+        </PublicRoute>
         <PrivateRoute exact path="/">
           <AppGradebooks />  {/* Home Page */}
         </PrivateRoute>
@@ -23,8 +36,14 @@ export default function Router({ setIsAuthenticated }) {
         <PrivateRoute exact path="/gradebooks/create">
           <AddGradebook />
         </PrivateRoute>
+        <PrivateRoute exact path="/gradebooks/:id/edit">
+        {activeUser.id && <EditGradebook />}
+        </PrivateRoute>
         <PrivateRoute exact path="/gradebooks/:id">
-          <SingleGradebook />
+          <SingleGradebook isMyGradebookPage={false}/>
+        </PrivateRoute>
+        <PrivateRoute exact path="/my-gradebook">
+        {activeUser.id && <SingleGradebook isMyGradebookPage={true}/>}
         </PrivateRoute>
         <PrivateRoute exact path="/teachers/:id">
           <SingleTeacher />
@@ -32,23 +51,9 @@ export default function Router({ setIsAuthenticated }) {
         <PrivateRoute exact path="/teachers">
           <AppTeachers />
         </PrivateRoute>
-        <PrivateRoute exact path="/my-gradebook">
-          <SingleGradebook />
+        <PrivateRoute exact path="/gradebooks/:id/students/create">
+        {activeUser.id && <AddStudent />}
         </PrivateRoute>
-        <PublicRoute exact path="/login">
-          <AppLogin
-            onLogin={() => {
-              setIsAuthenticated(true);
-            }}
-          />
-        </PublicRoute>
-        <PublicRoute exact path="/register">
-          <AppRegister
-            onRegister={() => {
-              setIsAuthenticated(true);
-            }}
-          />
-        </PublicRoute>
       </Switch>
     </div>
   );

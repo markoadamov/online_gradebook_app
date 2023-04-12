@@ -34,14 +34,13 @@ export default function AppGradebooks() {
     };
     await handleGetGradebooks(fetchParams);
     setGbFetchParams(fetchParams);
-    //console.log("Current and total gradebook count:",current_and_total_gradebook_count);
   };
 
   return (
     <div className="Center">
       <h1>Gradebooks</h1>
-      <br/>
-      <label>Filter Term: </label>
+      <br />
+      <label>Filter By Term In Gradebook Name: </label>
       <FilterForm
         fetchParams={gbFetchParams}
         setFetchParams={setGbFetchParams}

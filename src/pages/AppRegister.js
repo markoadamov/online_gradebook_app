@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import authService from "../services/AuthService";
+import { useDispatch, useSelector } from "react-redux";
+import { performRegister, performErrorReset } from "../store/authentication/slice";
+import { errorsSelector } from "../store/authentication/selectors";
 
 export default function AppRegister({ onRegister }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({
     first_name: "",
     last_name: "",
@@ -14,32 +17,20 @@ export default function AppRegister({ onRegister }) {
     accepted_terms: "",
   });
 
-  const [errors, setErrors] = useState({
-    first_name: null,
-    last_name: null,
-    email: null,
-    password: null,
-    image_url: null,
-    accepted_terms: null,
-  });
+  const errors = useSelector(errorsSelector);
 
-  const [invalidCredentials, setInvalidCredentials] = useState(false);
+  useEffect(() => {
+    dispatch(performErrorReset());
+  }, []);
+  
+  const handleRedirect = () => {
+    history.push("/");
+    onRegister();
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setInvalidCredentials(false);
-
-    try {
-      await authService.register(credentials);
-      history.push("/");
-      onRegister();
-      console.log("Registered and logged in successfully");
-    } catch(e) {
-      console.log("Errors:",e.response.data.errors);
-      setErrors(e.response.data.errors);
-      setInvalidCredentials(true);
-      alert("invalid credentials");
-    }
+    dispatch(performRegister({data: credentials, redirect: handleRedirect}))
   }
 
   function handleChange() {
@@ -150,9 +141,6 @@ export default function AppRegister({ onRegister }) {
         {errors.accepted_terms ? handleErrorMessages(errors.accepted_terms):<br/>}
         
         <button>Register</button>
-        {invalidCredentials && (
-          <p style={{ color: "red" }}>Invalid credentials</p>
-        )}
       </form>
     </div>
   );

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import authService from "../services/AuthService";
+import { useDispatch, useSelector } from "react-redux";
+import { performLogin, performErrorReset } from "../store/authentication/slice";
+import { errorsSelector } from "../store/authentication/selectors";
 
 export default function AppLogin({ onLogin }) {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const errors = useSelector(errorsSelector);
+
   let defaultState = {
     email: "",
     password: "",
@@ -11,22 +16,18 @@ export default function AppLogin({ onLogin }) {
 
   const [credentials, setCredentials] = useState(defaultState);
 
-  const [invalidCredentials, setInvalidCredentials] = useState(false);
+  useEffect(() => {
+    dispatch(performErrorReset());
+  }, []);
+
+  const handleRedirect = () => {
+    history.push("/");
+    onLogin();
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setInvalidCredentials(false);
-
-    try {
-      await authService.login(credentials);
-      onLogin();
-      history.push("/");
-      console.log("logged in successfully");
-    } catch (e) {
-      console.log("Error:", e);
-      setInvalidCredentials(true);
-      alert("invalid credentials");
-    }
+    dispatch(performLogin({data: credentials, redirect: handleRedirect}))
   }
 
   return (
@@ -54,8 +55,8 @@ export default function AppLogin({ onLogin }) {
           minLength="2"
           required
         />
-        {invalidCredentials && (
-          <small style={{ color: "red" }}><br />Invalid credentials</small>
+        {errors.message && (
+          <small style={{ color: "red" }}><br />{errors.message}</small>
         )}
         <br />
         <button>Login</button>

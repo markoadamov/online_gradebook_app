@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import authService from "../services/AuthService";
+import { useDispatch } from "react-redux";
+import { performLogout } from "../store/authentication/slice";
 
 export default function Header({ isAuthenticated, setIsAuthenticated }) {
+
+  const dispatch = useDispatch();
+
   async function handleLogout() {
-    await authService.logout();
-    setIsAuthenticated(false);
+    dispatch(performLogout(setIsAuthenticated))
   }
 
   return (

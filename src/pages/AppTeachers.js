@@ -27,8 +27,8 @@ export default function AppTeachers() {
   return (
     <div className="Center">
       <h1>Teachers</h1>
-      <br/>
-      <label>Filter By Name: </label>
+      <br />
+      <label>Filter By First Name: </label>
       <FilterForm
         fetchParams={tchFetchParams}
         setFetchParams={setTchFetchParams}
