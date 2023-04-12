@@ -27,6 +27,7 @@ export default function SingleGradebook({ isMyGradebookPage }) {
   let history = useHistory();
   const location = useLocation();
   const [currentGradebookId, setCurrentGradebookId] = useState();
+  const [firstClick, setFirstClick] = useState(true);
 
   useEffect(() => {
     if (isMyGradebookPage && activeUser.gradebook_id) {
@@ -56,6 +57,7 @@ export default function SingleGradebook({ isMyGradebookPage }) {
   const handleDeleteGradebook = async () => {
     const decision = window.confirm("Are you sure you want to delete?");
     if (decision) {
+      setFirstClick(false);
       dispatch(
         performDeleteGradebook({
           idToDelete: currentGradebookId,
@@ -78,9 +80,10 @@ export default function SingleGradebook({ isMyGradebookPage }) {
     dispatch(performAddNewComment(data));
   };
 
-  const handleDeleteComment = async (id) => {
+  const handleDeleteComment = async (id, setFirstClick) => {
     const decision = window.confirm("Are you sure you want to delete?");
     if (decision) {
+      setFirstClick(false);
       dispatch(performDeleteComment(id));
     }
   };
@@ -98,7 +101,7 @@ export default function SingleGradebook({ isMyGradebookPage }) {
             Edit Gradebook
           </Link>
         </button>
-        <button className="DeleteGradebook" onClick={handleDeleteGradebook}>
+        <button className="DeleteGradebook" onClick={firstClick?()=>{handleDeleteGradebook(setFirstClick)}:null}>
           Delete Gradebook
         </button>
       </div>

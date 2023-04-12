@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { performGetAllStudents, performDeleteStudent, deleteFrontStudent, setStudents, performAddNewStudent, setErrors } from './slice';
+import { performGetAllStudents, setStudentErrorReset, performStudentErrorReset, performDeleteStudent, deleteFrontStudent, setStudents, performAddNewStudent, setErrors } from './slice';
 
 import studentsService from '../../services/StudentsService';
 
@@ -34,6 +34,14 @@ function* deleteStudentHandler(action) {
     }
   }
 
+  function* errorResetHandler() {
+    try {
+      yield put(setStudentErrorReset());
+    } catch (errors) {
+      console.log("errors: ", errors);
+    }
+  }
+
 export function* watchGetAllStudents() {
     yield takeLatest(performGetAllStudents.type, getAllStudentsHandler);
 }
@@ -44,4 +52,8 @@ export function* watchAddNewStudent() {
 
 export function* watchDeleteStudent() {
     yield takeLatest(performDeleteStudent.type, deleteStudentHandler);
+}
+
+export function* watchStudentErrorReset() {
+  yield takeLatest(performStudentErrorReset.type, errorResetHandler);
 }

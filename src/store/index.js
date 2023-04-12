@@ -13,7 +13,7 @@ import {
   watchEditGradebook
 } from "./gradebooks/saga";
 import { watchGetAllTeachers, watchGetSingleTeacher } from "./teachers/saga";
-import { watchGetAllStudents, watchAddNewStudent, watchDeleteStudent } from "./students/saga";
+import { watchGetAllStudents, watchAddNewStudent, watchStudentErrorReset, watchDeleteStudent } from "./students/saga";
 import {
   watchRegister,
   watchLogin,
@@ -55,6 +55,7 @@ sagaMiddleware.run(watchGetSingleTeacher);
 sagaMiddleware.run(watchGetAllTeachers);
 sagaMiddleware.run(watchGetAllStudents);
 sagaMiddleware.run(watchDeleteStudent);
+sagaMiddleware.run(watchStudentErrorReset);
 sagaMiddleware.run(watchAddNewGradebook);
 sagaMiddleware.run(watchSetActiveUser);
 sagaMiddleware.run(watchAddNewStudent);

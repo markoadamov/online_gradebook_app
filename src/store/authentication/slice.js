@@ -25,7 +25,6 @@ const authenticationSlice = createSlice({
       state.errors = [];
     },
     resetActiveUserGradebookId: (state, action) => {
-      console.log("ID TO SET:", action.payload)
       state.active_user = {...state.active_user, gradebook_id: action.payload};
     },
     

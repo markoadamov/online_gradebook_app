@@ -20,8 +20,7 @@ export default function FilterForm({fetchParams, setFetchParams, handleGetData, 
             onChange={(e) => {
                 setFetchParams({ ...fetchParams, filterParameter: e.target.value });
             }}
-            minLength="1"
-            //required
+            required
           />
           <button>Submit</button>
         </form>

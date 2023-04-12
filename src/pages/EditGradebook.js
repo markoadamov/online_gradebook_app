@@ -74,9 +74,10 @@ export default function EditGradebook() {
         setNewGradebook({ ...newGradebook, user_id: Number(e.target.value) });
       }
 
-      const handleDeleteStudent = async (id) => {
+      const handleDeleteStudent = async (id, setFirstClick) => {
         const decision = window.confirm("Are you sure you want to delete?");
         if (decision) {
+          setFirstClick(false);
           dispatch(performDeleteStudent(id));
         }
       }

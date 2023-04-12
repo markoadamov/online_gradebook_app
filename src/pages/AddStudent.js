@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { performAddNewStudent } from "../store/students/slice";
+import { performAddNewStudent, performStudentErrorReset } from "../store/students/slice";
 import { studentsErrorsSelector } from "../store/students/selectors";
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { activeUserSelector } from "../store/authentication/selectors";
@@ -17,6 +17,7 @@ export default function AddStudent() {
   const errors = useSelector(studentsErrorsSelector);
 
   useEffect(() => {
+    dispatch(performStudentErrorReset());
     setIsClassTeacher(id == activeUser.gradebook_id)
     setNewStudent({...newStudent, gradebook_id: id});
   }, [location]);

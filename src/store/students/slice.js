@@ -4,6 +4,7 @@ const middlewareActions = {
   performGetAllStudents: () => {},
   performAddNewStudent: () => {},
   performDeleteStudent: () => {},
+  performStudentErrorReset: () => {},
 };
 
 const studentsSlice = createSlice({
@@ -19,6 +20,9 @@ const studentsSlice = createSlice({
     },
     setErrors: (state, action) => {
       state.errors = action.payload;
+    },
+    setStudentErrorReset: (state, action) => {
+      state.errors = [];
     },
     deleteFrontStudent: (state, action) => {
       state.data = state.data.filter(
@@ -36,7 +40,9 @@ export const {
   setDeselectedStudent,
   setStudents,
   setErrors,
+  setStudentErrorReset,
   performGetAllStudents,
+  performStudentErrorReset,
   performAddNewStudent,
   performDeleteStudent,
 } = studentsSlice.actions;

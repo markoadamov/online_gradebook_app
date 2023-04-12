@@ -7,6 +7,7 @@ import { performSetActiveUser } from "./store/authentication/slice";
 import { activeUserSelector } from "./store/authentication/selectors";
 
 function App() {
+  
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
   );
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <Page
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}
