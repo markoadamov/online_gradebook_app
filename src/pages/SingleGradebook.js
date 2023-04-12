@@ -77,6 +77,7 @@ export default function SingleGradebook({ isMyGradebookPage }) {
   };
 
   const handleAddNewComment = async (data) => {
+    data.setFirstClick(false);
     dispatch(performAddNewComment(data));
   };
 

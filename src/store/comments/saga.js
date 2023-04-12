@@ -23,8 +23,10 @@ function* deleteCommentHandler(action) {
 
 function* addNewCommentHandler(action) {
   try {
-    const response = yield call(commentsService.add, action.payload.data);
+    console.log(action.payload);
+    const response = yield call(commentsService.add, action.payload.comment);
     yield put(setUpdateComments(response.data));
+    action.payload.setFirstClick(true);
   } catch (errors) {
     console.log("errors: ", errors);
   }
