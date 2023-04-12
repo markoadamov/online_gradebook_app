@@ -14,6 +14,7 @@ export default function AddGradebook() {
   const [newGradebook, setNewGradebook] = useState({ name: "", user_id: "" });
   let history = useHistory();
   const activeUser = useSelector(activeUserSelector);
+  const [firstClick, setFirstClick] = useState(true);
 
   useEffect(() => {
     handleGetTeachers();
@@ -21,11 +22,11 @@ export default function AddGradebook() {
 
   const handleGetTeachers = async () => {
     dispatch(
-      performGetAllTeachers({
+      performGetAllTeachers({fetchParams: {
         loadCount: "",
         filterParameter: "",
         onlyFree: 1, // 1 znaci da vrati samo slobodne profesore (one koji nisu razredne staresine)
-      })
+      }, setFirstClick: (e)=>{}})
     );
   };
 
@@ -35,13 +36,18 @@ export default function AddGradebook() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      performAddNewGradebook({
-        data: newGradebook,
-        redirect: handleRedirect,
-        activeUser: activeUser,
-      })
-    );
+
+    if (firstClick) {
+      setFirstClick(false);
+      dispatch(
+        performAddNewGradebook({
+          data: newGradebook,
+          redirect: handleRedirect,
+          activeUser: activeUser,
+          setFirstClick: setFirstClick,
+        })
+      );
+    }
   };
 
   const handleCancel = () => {

@@ -18,22 +18,27 @@ export default function AppGradebooks() {
   const current_and_total_gradebook_count = useSelector(
     currentTotalGradebookCountSelector
   );
+  const [firstClick, setFirstClick] = useState(true);
 
   useEffect(() => {
     handleGetGradebooks();
   }, []);
 
-  const handleGetGradebooks = async (fetchParams = gbFetchParams) => {
+  const handleGetGradebooks = async (fetchParams = {fetchParams: gbFetchParams, setFirstClick: (e)=>{}}) => {
     dispatch(performGetAllGradebooks(fetchParams));
   };
 
   const handleLoadMore = async () => {
-    const fetchParams = {
-      ...gbFetchParams,
-      loadCount: gbFetchParams.loadCount + 10,
-    };
-    await handleGetGradebooks(fetchParams);
-    setGbFetchParams(fetchParams);
+    if (firstClick) {
+      const fetchParams = {
+        ...gbFetchParams,
+        loadCount: gbFetchParams.loadCount + 10,
+      };
+
+      setFirstClick(false);
+      await handleGetGradebooks({fetchParams: fetchParams, setFirstClick});
+      setGbFetchParams(fetchParams);
+    }
   };
 
   return (

@@ -20,7 +20,7 @@ export default function AppTeachers() {
     handleGetTeachers();
   }, []);
 
-  const handleGetTeachers = async (fetchParams = tchFetchParams) => {
+  const handleGetTeachers = async (fetchParams = {fetchParams: tchFetchParams, setFirstClick: (e)=>{}}) => {
     dispatch(performGetAllTeachers(fetchParams));
   };
 

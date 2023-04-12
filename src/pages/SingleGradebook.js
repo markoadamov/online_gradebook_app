@@ -62,7 +62,8 @@ export default function SingleGradebook({ isMyGradebookPage }) {
         performDeleteGradebook({
           idToDelete: currentGradebookId,
           redirect: handleRedirect,
-          activeUser: activeUser
+          activeUser: activeUser,
+          setFirstClick: setFirstClick
         })
       );
     }

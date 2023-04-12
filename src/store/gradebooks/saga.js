@@ -15,7 +15,8 @@ import { resetActiveUserGradebookId } from "../authentication/slice";
 
 function* getAllGradebooksHandler(action) {
   try {
-    const data = yield call(gradebooksService.getAll, action.payload);
+    const data = yield call(gradebooksService.getAll, action.payload.fetchParams);
+    action.payload.setFirstClick(true);
     yield put(setGradebooks(data));
   } catch (errors) {
     console.log("errors: ", errors);
@@ -38,6 +39,7 @@ function* getSingleGradebookHandler(action) {
 function* addNewGradebookHandler(action) {
   try {
     const data = yield call(gradebooksService.add, action.payload.data);
+    action.payload.setFirstClick(true);
     if(action.payload.activeUser.id == action.payload.data.user_id)
     {
       yield put(resetActiveUserGradebookId(data.data.id));
@@ -53,7 +55,8 @@ function* deleteGradebookHandler(action) {
   try {
     const data = yield call(gradebooksService.delete, action.payload.idToDelete);
     yield put(resetSingleGradebook());
-    if(action.payload.activeUser.id === action.payload.idToDelete)
+    action.payload.setFirstClick(true);
+    if(action.payload.activeUser.gradebook_id === action.payload.idToDelete)
     {
       yield put(resetActiveUserGradebookId(0));
     }
@@ -67,6 +70,7 @@ function* deleteGradebookHandler(action) {
 function* editGradebookHandler(action) {
   try {
     const data = yield call(gradebooksService.edit, action.payload.data);
+    action.payload.setFirstClick(true);
     if(action.payload.activeUser.id != action.payload.data.gradebookToAdd.user_id)
     {
       yield put(resetActiveUserGradebookId(0));

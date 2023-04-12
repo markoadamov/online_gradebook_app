@@ -12,7 +12,8 @@ import teachersService from "../../services/TeachersService";
 function* getAllTeachersHandler(action) {
   try {
     yield put(setReset()); // Ovo je dodato se ne bi ucitao state sa prethodne stranice
-    const data = yield call(teachersService.getAll, action.payload);
+    const data = yield call(teachersService.getAll, action.payload.fetchParams);
+    action.payload.setFirstClick(true);
     yield put(setTeachers(data));
   } catch (errors) {
     console.log("errors: ", errors);
